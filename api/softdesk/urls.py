@@ -3,10 +3,11 @@ from django.urls import path, include
 from rest_framework import routers
 
 from authentication.views import Register
-from project.views import ProjectViewSet
+from project.views import ProjectViewSet, ContributorViewSet
 
 router = routers.DefaultRouter()
 router.register(r"", ProjectViewSet, basename="projects")
+router.register(r"^(?P<project_id>[^/.]+)/users", ContributorViewSet, basename="users")
 
 urlpatterns = [
 
