@@ -4,10 +4,12 @@ from rest_framework import routers
 
 from authentication.views import Register
 from project.views import ProjectViewSet, ContributorViewSet
+from issue.views import IssueViewSet
 
 router = routers.DefaultRouter()
 router.register(r"", ProjectViewSet, basename="projects")
 router.register(r"^(?P<project_id>[^/.]+)/users", ContributorViewSet, basename="users")
+router.register(r"^(?P<project_id>[^/.]+)/issues", IssueViewSet, basename="issues")
 
 urlpatterns = [
 
