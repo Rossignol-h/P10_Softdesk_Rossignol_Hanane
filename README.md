@@ -79,9 +79,8 @@ http://127.0.0.1:8000/signup/
 
 #### 1 - Please read the documentation on POSTMAN:
 
-```bash
-https://documenter.getpostman.com/view/23330358/2s83tCLDP2‌
-```
+[https://documenter.getpostman.com/view/23330358/2s83tCLDP2](https://documenter.getpostman.com/view/23330358/2s83tCLDP2)
+
 
 #### 2 - You can test all the endpoints on POSTMAN: 
 - Login or Signup to your POSTMAN account.
