@@ -1,0 +1,121 @@
+#=============================== 5 USERS FOR SIGNUP
+
+{
+    "username": "lauraly",
+    "password": "Secret1234",
+    "first_name": "Laura",
+    "last_name": "Caroli",
+    "email": "laura.caroli@gmail.com"
+}
+
+{
+    "username": "john78",
+    "password": "Secret1234",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@gmail.com"
+}
+
+{
+    "username": "sammy",
+    "password": "Secret1234",
+    "first_name": "Sam",
+    "last_name": "Adams",
+    "email": "Sam.adams@gmail.com"
+}
+
+{
+    "username": "camila22",
+    "password": "Secret1234",
+    "first_name": "Camila",
+    "last_name": "Bella",
+    "email": "camila.bella@gmail.com"
+}
+
+{
+    "username": "paul33",
+    "password": "Secret1234",
+    "first_name": "Paul",
+    "last_name": "Dubois",
+    "email": "paul.dubois@gmail.com"
+}
+
+#=============================== PROJECTS
+
+{
+    "title": "Netflix Clone",
+    "description": "description of the Project",
+    "type": "IOS"
+}
+
+{
+    "title": "SoftDesk",
+    "description": "description of the Project",
+    "type": "Android"
+}
+
+{
+    "title": "LitReview",
+    "description": "description of the Project",
+    "type": "Front-end"
+}
+
+{
+    "title": "Random E-commerce",
+    "description": "description of the Project",
+    "type": "Back-end"
+}
+
+
+{
+    "title": "Marketing Web app",
+    "description": "description of the Project",
+    "type": "IOS"
+}
+
+#=========================================== ISSUES
+
+{
+    "title": "first Issue for project 1",
+    "description": "description of the Issue",
+    "tag": "Task",
+    "priority": "Medium",
+    "status": "InProgress",
+    "assignee_user_id": 2
+}
+
+{
+    "title": "Second Issue for project 1",
+    "description": "description of the Issue",
+    "tag": "Bug",
+    "priority": "Hight",
+    "status": "Completed",
+    "assignee_user_id": 3
+}
+
+{
+    "title": "Third Issue for project 2",
+    "description": "description of the Issue",
+    "tag": "Improvement",
+    "priority": "Low",
+    "status": "ToDo",
+    "assignee_user_id": 4
+}
+
+#=========================================== COMMENT ON ISSUE
+
+{
+    "description": "First Comment on this Issue"
+}
+
+{
+    "description": "Second Comment on this Issue"
+}
+
+{
+    "description": "Third Comment on this Issue"
+}
+
+{
+    "description": "Fourth Comment on this Issue"
+}
