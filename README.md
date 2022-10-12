@@ -3,7 +3,7 @@
  #### This project is a secure RESTFul API :
 
 
-- A user can signup login,
+- A user can signup and login,
 - A connected user can create a project,
 - A project can have contributors, issues with comments.
 - Stack used: Django, Django REST Framework.
@@ -71,21 +71,24 @@ Starting development server at http://127.0.0.1:8000/  # click on this link
 
 But to access the first step of using this API go to :
 
-- [Click here to the API documentation](http://127.0.0.1:8000/signup/‌) 
-
+```bash
+http://127.0.0.1:8000/signup/ 
+```
 
 ## Testing API 
 
 #### 1 - Please read the documentation on POSTMAN:
 
-[Link to the API doc](https://documenter.getpostman.com/view/23330358/2s83tCLDP2‌)
+```bash
+https://documenter.getpostman.com/view/23330358/2s83tCLDP2‌
+```
 
 #### 2 - You can test all the endpoints on POSTMAN: 
 - Login or Signup to your POSTMAN account.
 - Now you're ready to send some requests !
 - For speed up the process I write for you a bunch of data in "data.txt" file :
 - Users, projects ,issues, comments in JSON format
-- just copy and paste in the filed "RAW"
+- just copy and paste in the field "RAW"
 - follow the documentation and enjoy ;)
 
 ## Check if the code respect the style guide for Python (PEP8)
