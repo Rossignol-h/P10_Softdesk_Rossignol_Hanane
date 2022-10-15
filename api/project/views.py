@@ -23,14 +23,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsProjectOwner]
 
     def get_project(self):
-        lookup_field = self.kwargs["project_id"]
-        return get_object_or_404(Project, id=lookup_field)
-
-    def get_queryset(self):
-        return Project.objects.filter(author_user_id=self.request.user)
+        current_project = self.kwargs["pk"]
+        return get_object_or_404(Project, id=current_project)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -69,27 +66,27 @@ class ContributorViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, ContributorPermission]
 
     def get_queryset(self):
-        """ retrieve all contributors"""
-        id_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
-        return Contributor.objects.filter(project_id=id_project)
+        """ retrieve all contributors of a project """
+        current_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
+        return Contributor.objects.filter(project_id=current_project)
 
     def create(self, request, *args, **kwargs):
-        id_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
-        user = request.data['user']
-        queryset = Contributor.objects.filter(user=user, project_id=id_project)
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        current_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
+        current_user = request.data['user']
+        current_user_exist = Contributor.objects.filter(user=current_user, project_id=current_project)
 
-        if queryset:
+        if current_user_exist:
             return Response({
-                    "message": "This user is already a contributor."},
+                    "message": "This user is already a contributor for this project."},
                     status=status.HTTP_403_FORBIDDEN)
 
         else:
-            contribution = serializer.save(project_id=id_project)
+            serializer.is_valid(raise_exception=True)
+            contribution = serializer.save(project_id=current_project)
             return Response({'contribution': ContributorSerializer(contribution,
                             context=self.get_serializer_context()).data,
-                            'message': "This new contributor is successfully added to the project."},
+                            'message': f"This new contributor is successfully added to the project : {current_project}."},
                             status=status.HTTP_201_CREATED)
 
     def destroy(self, request, *args, **kwargs):
@@ -104,9 +101,7 @@ class ContributorViewSet(viewsets.ModelViewSet):
                     {'message': "The author can't be deleted !"},
                     status=status.HTTP_403_FORBIDDEN)
             else:
-                self.perform_destroy(Contributor.objects.filter(
-                    user=self.kwargs['pk'],
-                    project_id=self.kwargs['project_id']))
+                self.perform_destroy(contributor_to_delete)
                 return Response(
                         {'message': "This contributor is successfully deleted"},
                         status=status.HTTP_204_NO_CONTENT)
