@@ -8,7 +8,7 @@ NOT_CONTRIBUTOR = "You are not a contributor of this project !"
 NOT_PROJECT_AUTHOR = "You are not the author of this project !"
 NOT_CONTENT_AUTHOR = "You are not the author of this content !"
 
-# ================================================= PERMISSIONS CLASSES
+# ================================================= PERMISSIONS FOR PROJECT
 
 
 class IsProjectOwner(BasePermission):
@@ -30,9 +30,11 @@ class IsProjectOwner(BasePermission):
             else:
                 return False
 
-        if view.action in ['update','destroy'] and request.user == obj.author_user_id:
+        if view.action in ['update', 'destroy'] and request.user == obj.author_user_id:
             return True
         return False
+
+# ============================================ PERMISSION FOR ISSUES & COMMENTS
 
 
 class IsContributorOrAuthor(BasePermission):
@@ -62,9 +64,12 @@ class IsContributorOrAuthor(BasePermission):
             else:
                 return False
 
-        if view.action in ['update','destroy'] and request.user == obj.author_user_id:
+        if view.action in ['update', 'destroy'] and request.user == obj.author_user_id:
             return True
         return False
+
+# ================================================= PERMISSIONS FOR CONTRIBUTORS
+
 
 class ContributorPermission(BasePermission):
     """

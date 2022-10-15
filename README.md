@@ -20,10 +20,10 @@
 git clone https://github.com/Rossignol-h/P10_Softdesk_Rossignol_Hanane.git
 ```
 
-#### open your terminal at :
+#### open your terminal at the root of the project :
 
 ```bash
-cd P10_Softdesk_Rossignol_Hanane
+P10_Softdesk_Rossignol_Hanane-main # This path
 ```
 
 #### Create a virtual environment :
@@ -35,8 +35,8 @@ python3 -m venv env  # on Mac or Linux
 
 #### Activate the virtual environment :
 ```bash
-env/Script/activate  # on Windows
-env/bin/activate     # on Mac or Linux
+./env/Script/activate  # on Windows
+./env/bin/activate     # on Mac or Linux
 ```
 
 #### Install all dependencies from the file 'requirements.txt' :

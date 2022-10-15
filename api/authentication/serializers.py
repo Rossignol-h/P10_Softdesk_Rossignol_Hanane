@@ -7,9 +7,6 @@ User = get_user_model()
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    """
-
-    """
 
     class Meta:
         model = User

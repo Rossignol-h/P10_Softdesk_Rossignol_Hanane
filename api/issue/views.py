@@ -38,7 +38,7 @@ class IssueViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             new_issue = serializer.save(author_user_id=self.request.user, project_id=current_project)
             return Response({
-                'New issue': IssueSerializer(new_issue,context=self.get_serializer_context()).data,
+                'New issue': IssueSerializer(new_issue, context=self.get_serializer_context()).data,
                 'message': f"this issue is successfully added to the project : {current_project}"},
                 status=status.HTTP_201_CREATED)
         except ObjectDoesNotExist:
@@ -47,9 +47,9 @@ class IssueViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         try:
             current_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
-            issue_to_delete = Issue.objects.get(project_id = current_project, id = self.kwargs['pk'])
+            issue_to_delete = Issue.objects.get(project_id=current_project, id=self.kwargs['pk'])
 
-            if issue_to_delete :
+            if issue_to_delete:
                 self.perform_destroy(issue_to_delete)
                 return Response(
                         {'message': "This issue is successfully deleted"},
@@ -81,19 +81,17 @@ class CommentViewSet(viewsets.ModelViewSet):
 
         try:
             current_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
-            current_issue = get_object_or_404(Issue, pk=self.kwargs['issue_id'], project_id = current_project)
+            current_issue = get_object_or_404(Issue, pk=self.kwargs['issue_id'], project_id=current_project)
 
             if current_issue:
                 serializer.is_valid(raise_exception=True)
                 new_comment = serializer.save(author_user_id=self.request.user, issue_id=current_issue)
                 return Response({
-                'New comment': CommentSerializer(new_comment,
-                                context=self.get_serializer_context()).data,
-                'message': f"this comment is successfully added to the issue : {current_issue}"},
-                status=status.HTTP_201_CREATED)
+                    'New comment': CommentSerializer(new_comment, context=self.get_serializer_context()).data,
+                    'message': f"this comment is successfully added to the issue : {current_issue}"},
+                    status=status.HTTP_201_CREATED)
         except ObjectDoesNotExist:
             raise Http404
-
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

@@ -86,7 +86,8 @@ class ContributorViewSet(viewsets.ModelViewSet):
             contribution = serializer.save(project_id=current_project)
             return Response({'contribution': ContributorSerializer(contribution,
                             context=self.get_serializer_context()).data,
-                            'message': f"This new contributor is successfully added to the project : {current_project}."},
+                            'message':
+                            f"This new contributor is successfully added to the project : {current_project}."},
                             status=status.HTTP_201_CREATED)
 
     def destroy(self, request, *args, **kwargs):
