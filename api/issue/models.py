@@ -31,7 +31,7 @@ class Issue(models.Model):
     status = models.CharField(max_length=12, choices=STATUS)
     tag = models.CharField(max_length=12, choices=TAG)
     description = models.CharField(max_length=5000)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, unique=True)
     assignee_user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="assignee")
     author_user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
     project_id = models.ForeignKey(Project, on_delete=models.CASCADE)
@@ -50,7 +50,7 @@ class Issue(models.Model):
 
 class Comment(models.Model):
 
-    description = models.CharField(max_length=500, blank=False)
+    description = models.CharField(max_length=500, blank=False, unique=True)
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
     author_user_id = models.ForeignKey(User, on_delete=models.CASCADE)
