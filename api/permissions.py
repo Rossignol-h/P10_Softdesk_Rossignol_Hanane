@@ -44,7 +44,7 @@ class IsContributorOrAuthor(BasePermission):
     """
     def has_permission(self, request, view):
         self.message = NOT_CONTRIBUTOR
-        if view.kwargs.get('project_id'):
+        if view.get_project():
             current_project = view.kwargs.get('project_id')
             contributors_of_current_project = Contributor.objects.filter(project_id=current_project)
             current_user = contributors_of_current_project.filter(user=request.user).exists()

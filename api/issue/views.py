@@ -45,18 +45,14 @@ class IssueViewSet(viewsets.ModelViewSet):
             raise Http404
 
     def destroy(self, request, *args, **kwargs):
-        try:
-            current_project = get_object_or_404(Project, pk=self.kwargs['project_id'])
-            issue_to_delete = Issue.objects.get(project_id=current_project, id=self.kwargs['pk'])
+        instance = self.get_object()
+        if instance:
+            self.perform_destroy(instance)
+            return Response(
+                {'message': "this issue is successfully deleted"},
+                status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-            if issue_to_delete:
-                self.perform_destroy(issue_to_delete)
-                return Response(
-                        {'message': "This issue is successfully deleted"},
-                        status=status.HTTP_204_NO_CONTENT)
-
-        except ObjectDoesNotExist:
-            raise ValidationError(detail="This issue doesn't exist")
 
 # ================================================== COMMENT VIEW SECTION
 

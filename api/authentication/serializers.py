@@ -16,7 +16,7 @@ class RegisterSerializer(serializers.ModelSerializer):
                 'last_name': {'required': True},
                 'email': {'required': True,
                           'validators': [UniqueValidator
-                                         (queryset=User.objects.all(), message="Cet email existe déjà!")]},
+                                         (queryset=User.objects.all(), message="cet email exist deja")]},
                 'password': {'required': True, 'write_only': True,
                              'validators': [validate_password]}}
 

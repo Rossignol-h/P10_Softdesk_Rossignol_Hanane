@@ -63,8 +63,7 @@ python manage.py runserver
 
 #### The previous command will automatically generate a link :
 ```bash
-Starting development server at http://127.0.0.1:8000/  # click on this link
-# it will open the app on your default browser
+Starting development server at http://127.0.0.1:8000/  
 ```
 
 #### Click on that link it will open on your default browser :
